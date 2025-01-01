@@ -1,4 +1,5 @@
 # DM finally Project by Zeynab Golchin & Haniye Tebyanian 
+import numpy  as np
 
 def partition_string (string, current = []) :
     if not string :
@@ -12,15 +13,20 @@ def partition_string (string, current = []) :
         if len(prefix) <= 3 :
             save_current.extend(partition_string(supplement, current + [prefix]))
 
-    return save_current        
+
+    unique = []
+    for row in save_current :
+        array_row = np.array(row)
+        unique.append(np.unique(array_row))
+        
+
+    return unique        
             
 
-
-
-
 binary = "0101010"
-out = partition_string(binary)     
+out = partition_string(binary)
+
+
 for i in out :
-    print(i)  
-#print(out) 
+    print(i)
 
