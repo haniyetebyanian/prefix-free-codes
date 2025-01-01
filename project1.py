@@ -16,7 +16,6 @@ def partition_string (string, current = []) :
 
 
 
-# check
 binary = "0101010"
 partition_string(binary)        
 
