@@ -1,5 +1,4 @@
 # DM finally Project by Zeynab Golchin & Haniye Tebyanian 
-import numpy  as np
 
 def partition_string (string, current = []) :
     if not string :
@@ -16,8 +15,8 @@ def partition_string (string, current = []) :
 
     unique = []
     for row in save_current :
-        array_row = np.array(row)
-        unique.append(np.unique(array_row))
+        array_row = list(set(row))
+        unique.append(array_row)
 
     final= []
     for row in unique :
@@ -30,7 +29,7 @@ def partition_string (string, current = []) :
                     condition = condition * 0
 
         if condition == 1 :
-            final.append(np.array(row))                
+            final.append(row)                
         
 
     return final        
