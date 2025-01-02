@@ -54,5 +54,5 @@ for row in partition_output :
     sum = 1
     english_character_number = 26
 
-print(len(partition_output))    
-print(desired_state)        
+print(len(partition_output) % 1000000007)    
+print(desired_state % 1000000007)        
