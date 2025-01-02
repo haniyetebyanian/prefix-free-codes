@@ -36,15 +36,15 @@ def partition_string (string, current = []) :
     return final        
             
 
-binary = "01110"
-out = partition_string(binary)
+binary = input()
+partition_output = partition_string(binary)
 
 
 desired_state = 0
 english_character_number = 26
 sum = 1
-for row in out :
-    print(row)
+for row in partition_output :
+    #print(row)
     
     for letter in range(len(row)) :
         sum = sum * english_character_number
@@ -53,4 +53,6 @@ for row in out :
     
     sum = 1
     english_character_number = 26
+
+print(len(partition_output))    
 print(desired_state)        
