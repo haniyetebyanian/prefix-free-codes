@@ -1,20 +1,23 @@
 # DM finally Project by Zeynab Golchin & Haniye Tebyanian 
 
 def partition_string (string, current = []) :
-    if not string :
-        return [current]
+    
+    stack = [(string, [])]
+    results = []
 
-    save_current = []
-    for i in range(1, len(string) + 1) :
-        prefix = string[:i] 
-        supplement = string[i:]
+    while stack:
+        remaining, current = stack.pop()
 
-        if len(prefix) <= 3 :
-            save_current.extend(partition_string(supplement, current + [prefix]))
-
+        if not remaining:
+            results.append(current)
+            continue
+        for i in range(1, len(remaining) + 1) :
+            prefix = remaining[:i]
+            if len(prefix) <= 3 :
+                stack.append((remaining[i:], current + [prefix]))
 
     unique = []
-    for row in save_current :
+    for row in results :
         array_row = list(set(row))
         unique.append(array_row)
 
