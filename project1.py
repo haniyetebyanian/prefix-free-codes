@@ -18,13 +18,28 @@ def partition_string (string, current = []) :
     for row in save_current :
         array_row = np.array(row)
         unique.append(np.unique(array_row))
+
+    final= []
+    for row in unique :
+        condition = 1
+        for i in range(len(row) - 1):
+            for j in range(i + 1 , len(row)) :
+                if not ((str(row[j]).startswith(str(row[i]))) or (str(row[i]).startswith(str(row[j])))) :
+                    condition = condition * 1
+                else :
+                    condition = condition * 0
+
+        if condition == 1 :
+            final.append(np.array(row))                
         
 
-    return unique        
+    return final        
             
 
-binary = "0101010"
+binary = "01110"
 out = partition_string(binary)
+
+
 
 
 for i in out :
