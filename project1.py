@@ -40,8 +40,17 @@ binary = "01110"
 out = partition_string(binary)
 
 
-
-
-for i in out :
-    print(i)
-
+desired_state = 0
+english_character_number = 26
+sum = 1
+for row in out :
+    print(row)
+    
+    for letter in range(len(row)) :
+        sum = sum * english_character_number
+        english_character_number = english_character_number - 1
+    desired_state = desired_state + sum
+    
+    sum = 1
+    english_character_number = 26
+print(desired_state)        
