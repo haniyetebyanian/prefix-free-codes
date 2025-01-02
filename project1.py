@@ -22,8 +22,8 @@ def partition_string (string, current = []) :
     final= []
     for row in unique :
         condition = 1
-        for i in range(len(row) - 1):
-            for j in range(i + 1 , len(row)) :
+        for i in range(len(row)):
+            for j in range(i + 1,len(row)) :
                 if not ((str(row[j]).startswith(str(row[i]))) or (str(row[i]).startswith(str(row[j])))) :
                     condition = condition * 1
                 else :
