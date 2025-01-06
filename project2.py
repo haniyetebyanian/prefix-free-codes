@@ -1,58 +1,54 @@
-# DM finally Project by Zeynab Golchin & Haniye Tebyanian 
+base = {'0', '1', '00', '01', '10', '11', '000', '001', '010', '011', '100', '101', '110', '111'}
 
-def partition_string (string, current = []) :
-    
-    stack = [(string, [])]
-    results = []
+def find_partition(string):
+    n = len(string)
+    dp = [0] * (n + 1)
+    dp[0] = {frozenset()}
 
-    while stack:
-        remaining, current = stack.pop()
+    for i in range(1, n + 1):
+        current_set = set()
+        for length in range(1, min(4, i + 1)):
+            substring = string[i - length:i]
+            if substring in base:
+                for p_set in dp[i - length]:
+                    new_set = p_set | {substring}
+                    valid = True
+                    for a in new_set:
+                        for b in new_set:
+                            if a != b and (a.startswith(b) or b.startswith(a)):
+                                valid = False
+                                break
+                        if not valid:
+                            break
+                    if valid:
+                        current_set.add(frozenset(new_set))
+        dp[i] = current_set
 
-        if not remaining:
-            results.append(current)
-            continue
-        for i in range(1, len(remaining) + 1) :
-            prefix = remaining[:i]
-            if len(prefix) <= 3 :
-                stack.append((remaining[i:], current + [prefix]))
+    unique_partitions = dp[n]
+    return unique_partitions
 
-    unique = []
-    for row in results :
-        array_row = list(set(row))
-        unique.append(array_row)
+def calculate_desired_state(partitions):
+    MOD = 1000000007
+    english_character_number = 26
+    desired_state = 0
 
-    final= []
-    for row in unique :
-        condition = 1
-        for i in range(len(row)):
-            for j in range(i + 1,len(row)) :
-                if  ((str(row[j]).startswith(str(row[i]))) or (str(row[i]).startswith(str(row[j])))) :
-                    condition = condition * 0
+    for partition in partitions:
+        sum_value = 1
+        remaining_letters = english_character_number
 
-        if condition == 1 :
-            final.append(row)                
-        
+        for _ in partition:
+            sum_value = (sum_value * remaining_letters) % MOD
+            remaining_letters -= 1
 
-    return final        
-            
+        desired_state = (desired_state + sum_value) % MOD
+
+    return desired_state
 
 binary = input()
-partition_output = partition_string(binary)
+partitions = find_partition(binary)
 
+num_partitions = len(partitions) % 1000000007
+desired_state = calculate_desired_state(partitions)
 
-desired_state = 0
-english_character_number = 26
-sum = 1
-for row in partition_output :
-    #print(row)
-    
-    for letter in range(len(row)) :
-        sum = sum * english_character_number
-        english_character_number = english_character_number - 1
-    desired_state = desired_state + sum
-    
-    sum = 1
-    english_character_number = 26
-
-print(len(partition_output) % 1000000007)    
-print(desired_state % 1000000007)        
+print(num_partitions)
+print(desired_state)
