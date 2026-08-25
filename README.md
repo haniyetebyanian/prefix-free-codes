@@ -38,8 +38,8 @@ All binary strings of length 1 to 3 are enumerated (14 codes in total). All non-
 ### 2. Checking Decodability
 For a given valid set `X` and input string `T`, a dynamic programming approach with bitmasks is used to determine whether `T` can be fully decoded using the codes in `X` under a bijective mapping to letters.
 
-### 3. Counting Valid Mappings
-The same DP framework is extended to count the number of distinct strings `S` that can be produced by a given code set. When handling multiple overlapping sets, the principle of inclusion is applied to avoid double-counting.
+### 3. Counting Valid Sets
+Using the decodability check, all valid prefix-free sets that can successfully decode `T` are identified and counted.
 
 ### 4. Collecting Unique Codes
 After identifying all valid sets that successfully decode `T`, the distinct codes appearing in those sets are collected and counted.
@@ -60,7 +60,7 @@ After identifying all valid sets that successfully decode `T`, the distinct code
 
 The full project description is available here:
 
-[Project Documentation](docs/پروژه پایانی درس.pdf)
+[Project Documentation](docs/پروژه%20پایانی%20درس.pdf)
 
 ---
 
