@@ -52,7 +52,7 @@ After identifying all valid sets that successfully decode `T`, the distinct code
 |------|-------------|
 | `project1.py` | First part of the implementation |
 | `project2.py` | Second part of the implementation |
-| `docs/` | Project documentation |
+| `docs/پروژه پایانی درس.pdf` | Project documentation |
 
 ---
 
@@ -60,7 +60,7 @@ After identifying all valid sets that successfully decode `T`, the distinct code
 
 The full project description is available here:
 
-[Project Documentation](docs/)
+[Project Documentation](docs/پروژه پایانی درس.pdf)
 
 ---
 
